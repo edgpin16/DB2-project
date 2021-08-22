@@ -1,4 +1,8 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
+
+@extends('adminlte::auth.register')
+
+@section('title', 'Register')
 
 @section('content')
 <div class="container">
