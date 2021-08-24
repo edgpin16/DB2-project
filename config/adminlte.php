@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => true, //Dejo fijo el sidebar, o la parte de opciones
-    'layout_fixed_navbar' => true, //Dejo fijo, la barra de navegación
+    'layout_fixed_sidebar' => false, //Dejo fijo el sidebar, o la parte de opciones
+    'layout_fixed_navbar' => false, //Dejo fijo, la barra de navegación
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -167,7 +167,7 @@ return [
     |
     */
 
-    'right_sidebar' => true, //Sidebar o menu en el lado derecho
+    'right_sidebar' => false, //Sidebar o menu en el lado derecho
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'light',
     'right_sidebar_slide' => true,
@@ -226,15 +226,15 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
+        // [
+        //     'type'         => 'fullscreen-widget',
+        //     'topnav_right' => true,
+        // ],
 
         // Sidebar items:
         // [
