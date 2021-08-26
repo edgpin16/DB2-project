@@ -66,11 +66,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $newUser = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $newUser;
         // if($data['type_organization'] === "Farmacia") //Si solicito farmacia
         //     echo("Farmacia"); //Entonces, al final del user::Create, deberemos de colocar asigneRole
         // else if($data['type_organization'] === "Laboratorio")
