@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'type_organization' => ['required', 'string', 'max:255', Rule::in(['Farmacia', 'Laboratorio']) ], //Rule hace, que solo admita 2 valores, entre Farmacia y Laboratorio
         ]);
     }
 
@@ -69,5 +71,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        // if($data['type_organization'] === "Farmacia") //Si solicito farmacia
+        //     echo("Farmacia"); //Entonces, al final del user::Create, deberemos de colocar asigneRole
+        // else if($data['type_organization'] === "Laboratorio")
+        //     echo("Laboratorio"); //Igual aquí 
     }
 }

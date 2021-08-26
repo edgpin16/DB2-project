@@ -17,13 +17,17 @@
     <form action="{{ $register_url }}" method="post">
         {{ csrf_field() }}
 
+        {{-- @if ($errors->has('name'))
+            {{ddd($errors)}}
+        @endif --}}
+
         {{-- Name field --}}
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                   value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+                   value="{{ old('name') }}" placeholder="Ingresa el nombre de la institución" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                    <span class="fas fa-building {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
             </div>
             @if($errors->has('name'))
@@ -45,6 +49,21 @@
             @if($errors->has('email'))
                 <div class="invalid-feedback">
                     <strong>{{ $errors->first('email') }}</strong>
+                </div>
+            @endif
+        </div>
+
+        {{-- Type organization field --}}
+        <div class="input-group mb-3">
+            <label for="type_organization" class="mr-3">Selecciona un tipo de institución: </label>
+            <select class="input-group mb-3" name= "type_organization" id="type_organization">
+                <option value=""></option>
+                <option value="Farmacia">Farmacia</option>
+                <option value="Laboratorio">Laboratorio</option>
+            </select>
+            @if($errors->has('type_organization'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('password') }}</strong>
                 </div>
             @endif
         </div>
