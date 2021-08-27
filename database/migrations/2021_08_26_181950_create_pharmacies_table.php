@@ -15,8 +15,17 @@ class CreatePharmaciesTable extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
             $table->timestamps();
+
         });
+
+        Schema::table('pharmacies', function (Blueprint $table) {
+            $table->foreign('user_id')->nullable()->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+        });
+
     }
 
     /**
@@ -26,6 +35,11 @@ class CreatePharmaciesTable extends Migration
      */
     public function down()
     {
+        Schema::table('pharmacies', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
+
         Schema::dropIfExists('pharmacies');
     }
 }

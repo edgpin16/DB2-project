@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Pharmacy;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -68,10 +69,14 @@ class RegisterController extends Controller
     {
 
         $newUser = User::create([
-            'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        Pharmacy::create([
+            'name' => $data['name'],
+            'user_id' => $newUser->id,
+        ]); 
 
         return $newUser;
         // if($data['type_organization'] === "Farmacia") //Si solicito farmacia
