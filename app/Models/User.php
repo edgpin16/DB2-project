@@ -42,7 +42,7 @@ class User extends Authenticatable
     ];
 
     public function pharmacy(){
-        return $this->hasOne('App\Models\Pharmacy');
+        return $this->hasOne(Pharmacy::class);
     }
 
 }

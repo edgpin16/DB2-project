@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Pharmacy;
+
 
 class HomeController extends Controller
 {
@@ -24,8 +26,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $institution = User::find(auth()->id())->pharmacy->name;
-        ddd($institution);
-        return view('home');
+        //Podemos colocar auth()->user() 
+        // $pharmacy = User::find(auth()->id())->with('pharmacy');
+        // ddd(auth()->user()->with('pharmacy') );
+        // $pharmacy = Pharmacy::where('id_user', auth()->user()->id);
+
+        if( !session()->has('pharmacy') )
+            session(['pharmacy' => Pharmacy::where('user_id', auth()->user()->id)->get()]);
+        
+
+        return view('home', [
+            // 'pharmacy' => User::with('pharmacy')->find(auth()->id()),
+            // 'pharmacy' => $pharmacy,
+            // 'pharmacy' => User::find(auth()->id())->pharmacy,
+            //'pharmacy' => User::with('pharmacy')->find(auth()->id()),
+            'pharmacy' => session('pharmacy'),
+        ]);
     }
 }

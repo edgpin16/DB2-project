@@ -8,6 +8,11 @@
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>
+    {{-- {{ ddd($pharmacy) }} --}}
+    @if ($pharmacy)
+        <p> {{ Auth::user()->email }} </p>
+        <p> {{ $pharmacy[0]->name }} </p>
+    @endif
 @stop
 
 @section('css')
