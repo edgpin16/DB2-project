@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Subsidiary extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'pharmacy_id',
+        'city',
+        'province',
+    ];
+
+    public function pharmacy(){
+        return $this->belongsTo(Pharmacy::class);
+    }
+
 }

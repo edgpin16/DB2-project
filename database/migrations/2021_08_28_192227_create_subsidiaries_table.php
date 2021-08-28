@@ -15,8 +15,17 @@ class CreateSubsidiariesTable extends Migration
     {
         Schema::create('subsidiaries', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pharmacy_id');
+            $table->string('city');
+            $table->string('province');
             $table->timestamps();
         });
+
+        Schema::table('subsidiaries', function (Blueprint $table) {
+            $table->foreign('pharmacy_id')->nullable()->references('id')->on('pharmacies')
+            ->onDelete('cascade')->onUpdate('cascade');
+        });
+
     }
 
     /**
@@ -26,6 +35,11 @@ class CreateSubsidiariesTable extends Migration
      */
     public function down()
     {
+        Schema::table('subsidiaries', function (Blueprint $table) {
+            $table->dropForeign(['pharmacy_id']);
+            $table->dropColumn('pharmacy_id');
+        });
+
         Schema::dropIfExists('subsidiaries');
     }
 }

@@ -25,4 +25,8 @@ class Pharmacy extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function subsidiary(){
+        return $this->hasMany(Subsidiary::class);
+    }
+
 }
