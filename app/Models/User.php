@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-use App\Models\Pharmacy;
+use App\Models\Pharmacy\Pharmacy;
 
 class User extends Authenticatable
 {

@@ -15,6 +15,10 @@ class Subsidiary extends Model
         'province',
     ];
 
+    protected $hidden = [
+        'pharmacy_id',
+    ];
+
     public function pharmacy(){
         return $this->belongsTo(Pharmacy::class);
     }

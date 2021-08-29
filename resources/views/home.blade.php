@@ -11,8 +11,19 @@
     {{-- {{ ddd($pharmacy) }} --}}
     @if ($pharmacy)
         <p> {{ Auth::user()->email }} </p>
-        <p> {{ $pharmacy[0]->name }} </p>
+        <p> {{ $pharmacy->name }} </p>
     @endif
+
+    @if (!$subsidiares->isEmpty())
+        <p>Tienes una o mas sucursales!!!</p>
+        @foreach ($subsidiares as $subsidiary)
+            <p> {{$subsidiary->city}} </p>
+            <p> {{$subsidiary->province}} </p>
+        @endforeach
+    @else
+        <p>No tienes una sucursal :( Debes agregar una!! </p>
+    @endif
+
 @stop
 
 @section('css')

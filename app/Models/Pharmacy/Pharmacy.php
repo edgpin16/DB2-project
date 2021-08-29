@@ -21,11 +21,15 @@ class Pharmacy extends Model
         'user_id',
     ];
 
+    protected $hidden = [
+        'user_id',
+    ];
+
     public function user (){
         return $this->belongsTo(User::class);
     }
 
-    public function subsidiary(){
+    public function subsidiaries (){
         return $this->hasMany(Subsidiary::class);
     }
 
