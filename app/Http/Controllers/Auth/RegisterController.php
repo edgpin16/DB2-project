@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 use App\Models\User;
-use App\Models\Pharmacy\Pharmacy;
+use App\Models\Pharmacy;
 
 class RegisterController extends Controller
 {
