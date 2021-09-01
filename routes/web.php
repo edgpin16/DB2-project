@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('sucursal', SubsidiaryController::class)->names('Subsidiary');
+Route::resource('sucursal', SubsidiaryController::class)->names('subsidiary');
 
 // Auth::routes();
 

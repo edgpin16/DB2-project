@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSavedSubsidiary;
+use App\Models\Subsidiary;
+
 use Illuminate\Http\Request;
 
 class SubsidiaryController extends Controller
@@ -24,6 +27,9 @@ class SubsidiaryController extends Controller
     public function index()
     {
         //
+        return view('subsidiary.index', [
+            'subsidiaries' => session('subsidiares_pharmacy'),
+        ]);
     }
 
     /**
@@ -34,6 +40,7 @@ class SubsidiaryController extends Controller
     public function create()
     {
         //
+        return view('subsidiary.create');
     }
 
     /**
@@ -42,9 +49,18 @@ class SubsidiaryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSavedSubsidiary $request)
     {
         //
+        $validated = $request->validated();
+        
+        Subsidiary::create([
+            'pharmacy_id' => session('pharmacy')->id,
+            'city' => $validated['city'],
+            'province' => $validated['province']
+        ]); 
+
+        return redirect()->route('subsidiary.index');
     }
 
     /**
@@ -56,6 +72,7 @@ class SubsidiaryController extends Controller
     public function show($id)
     {
         //
+        //En este metodo, redireccionara a una vista, donde se verá el nombre, ciudad, estado, y total de empleados de la farmacia
     }
 
     /**
@@ -67,6 +84,13 @@ class SubsidiaryController extends Controller
     public function edit($id)
     {
         //
+        $subsidiary = Subsidiary::findOrFail($id);
+        if($subsidiary)
+            return view('subsidiary.edit', [
+                'subsidiary' => $subsidiary,
+            ]);
+        else
+            return redirect()->route('subsidiary.index');
     }
 
     /**
@@ -76,9 +100,14 @@ class SubsidiaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreSavedSubsidiary $request, $id)
     {
         //
+        $subsidiary = Subsidiary::findOrFail($id);
+        if($subsidiary)
+            $subsidiary->update( array_filter($request->validated()) ); 
+        
+        return redirect()->route('subsidiary.index');
     }
 
     /**
@@ -90,5 +119,10 @@ class SubsidiaryController extends Controller
     public function destroy($id)
     {
         //
+        $subsidiary = Subsidiary::findOrFail($id);
+        if($subsidiary)
+            $subsidiary->delete();
+        
+        return redirect()->route('subsidiary.index');
     }
 }
