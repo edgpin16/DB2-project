@@ -225,6 +225,35 @@ return [
     */
 
     'menu' => [
+        [
+            'text' => 'Dashboard',
+            'route' => 'home',
+            'icon' => 'fas fa-fw fa-home',
+
+        ],
+
+        ['header' => 'options'],
+        [
+            'text' => 'Sucursales',
+            'icon' => 'fas fa-fw fa-hospital-alt',
+            'submenu' => [
+                [
+                    'text' => 'Ver sucursales',
+                    'route' => 'subsidiary.index',
+                ],
+                [
+                    'text' => 'Agregar una sucursal',
+                    'route' => 'subsidiary.create'
+                ]
+            ]
+        ],
+        [
+            'text' => 'Empleados',
+            'icon' => 'fas fa-fw fa-user-tie',
+            'url' => '#',
+        ]
+    ],
+
         // Navbar items:
         // [
         //     'type'         => 'navbar-search',
@@ -234,6 +263,14 @@ return [
         // [
         //     'type'         => 'fullscreen-widget',
         //     'topnav_right' => true,
+        // ],
+
+        // [
+        //     'text'        => 'pages',
+        //     'url'         => 'admin/pages',
+        //     'icon'        => 'far fa-fw fa-file',
+        //     'label'       => 4,
+        //     'label_color' => 'success',
         // ],
 
         // Sidebar items:
@@ -246,85 +283,23 @@ return [
         //     'url'  => 'admin/blog',
         //     'can'  => 'manage-blog',
         // ],
-        [
-            'text' => 'Dashboard',
-            'route' => 'home',
-            'icon' => 'fas fa-fw fa-home',
 
-        ],
         // [
-        //     'text'        => 'pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        //     'route'  => 'subsidiary.index',
         // ],
-        ['header' => 'options'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
-    ],
+        // [
+        //     'text'    => 'multilevel',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //     ],
+        // ],
 
     /*
     |--------------------------------------------------------------------------

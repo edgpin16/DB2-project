@@ -3,11 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1 class="display-1 text-center"> Farmacia: {{ $pharmacy->name }} </h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    {{-- <p>Welcome to this beautiful admin panel.</p> --}}
     {{-- {{ ddd($pharmacy) }} --}}
     @if ($pharmacy)
         <p> {{ Auth::user()->email }} </p>
@@ -16,10 +16,10 @@
 
     @if (!$subsidiares->isEmpty())
         <p>Tienes una o mas sucursales!!!</p>
-        @foreach ($subsidiares as $subsidiary)
+        {{-- @foreach ($subsidiares as $subsidiary)
             <p> {{$subsidiary->city}} </p>
             <p> {{$subsidiary->province}} </p>
-        @endforeach
+        @endforeach --}}
     @else
         <p>No tienes una sucursal :( Debes agregar una!! </p>
     @endif
