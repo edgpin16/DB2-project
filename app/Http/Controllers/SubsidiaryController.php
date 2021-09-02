@@ -60,6 +60,8 @@ class SubsidiaryController extends Controller
             'province' => $validated['province']
         ]); 
 
+        $this->updateDataSessionSubsidiary();
+
         return redirect()->route('subsidiary.index');
     }
 
@@ -104,9 +106,12 @@ class SubsidiaryController extends Controller
     {
         //
         $subsidiary = Subsidiary::findOrFail($id);
-        if($subsidiary)
+
+        if($subsidiary){
             $subsidiary->update( array_filter($request->validated()) ); 
-        
+            $this->updateDataSessionSubsidiary();
+        }
+
         return redirect()->route('subsidiary.index');
     }
 
@@ -120,9 +125,17 @@ class SubsidiaryController extends Controller
     {
         //
         $subsidiary = Subsidiary::findOrFail($id);
-        if($subsidiary)
+
+        if($subsidiary){
             $subsidiary->delete();
-        
+            $this->updateDataSessionSubsidiary();
+        }
+
         return redirect()->route('subsidiary.index');
+    }
+
+    private function updateDataSessionSubsidiary(){
+        session()->forget('subsidiares_pharmacy'); //Olvido los datos que estan almacenados en la sesion
+        session(['subsidiares_pharmacy' => Subsidiary::where('pharmacy_id', session('pharmacy')->id)->get()]);//Después, los actualizo aquí
     }
 }
