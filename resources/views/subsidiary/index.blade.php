@@ -7,15 +7,14 @@
 @stop
 
 @section('content')
-    @if (!$subsidiaries->isEmpty())
         <div class="d-flex justify-content-between">
-            @foreach ($subsidiaries as $subsidiary)
+            @forelse ($subsidiaries as $subsidiary)
                 <div class="row w-75">
                     <div class="card mr-5">
                         <div class="card-body">
                             <h5 class="card-title">Sucursal n° {{$loop->iteration}} : </h5>
-                            <p class="card-text" > Ciudad: {{ $subsidiary->city }} </p>
-                            <p class="card-text" > Provincia: {{ $subsidiary->province }} </p>
+                            <p class="card-text" > Ciudad: {{ $subsidiary['city'] }} </p>
+                            <p class="card-text" > Provincia: {{ $subsidiary['province'] }} </p>
                             <a href=" {{ route('subsidiary.edit', $subsidiary) }} " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>
                             <form method="POST" action=" {{route('subsidiary.destroy', $subsidiary)}} ">
                                 @csrf
@@ -25,12 +24,11 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p>No posees ninguna sucursal :( </p>
+                <a href="{{ route('subsidiary.create') }}" class="btn btn-primary mb-2 btn-lg" role="button" >Agregar una</a>
+            @endforelse
         </div>
-    @else
-        <p>No posees ninguna sucursal :( </p>
-        <a href="{{ route('subsidiary.create') }}" class="btn btn-primary mb-2 btn-lg" role="button" >Agregar una</a>
-    @endif
 @stop
 
 @section('css')

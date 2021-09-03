@@ -83,16 +83,11 @@ class SubsidiaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Subsidiary $subsidiary)
     {
-        //
-        $subsidiary = Subsidiary::findOrFail($id);
-        if($subsidiary)
-            return view('subsidiary.edit', [
-                'subsidiary' => $subsidiary,
-            ]);
-        else
-            return redirect()->route('subsidiary.index');
+        return view('subsidiary.edit', [
+            'subsidiary' => $subsidiary,
+        ]);
     }
 
     /**
@@ -102,15 +97,11 @@ class SubsidiaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreSavedSubsidiary $request, $id)
+    public function update(StoreSavedSubsidiary $request, Subsidiary $subsidiary)
     {
         //
-        $subsidiary = Subsidiary::findOrFail($id);
-
-        if($subsidiary){
-            $subsidiary->update( array_filter($request->validated()) ); 
-            $this->updateDataSessionSubsidiary();
-        }
+        $subsidiary->update( array_filter($request->validated()) ); 
+        $this->updateDataSessionSubsidiary();
 
         return redirect()->route('subsidiary.index');
     }
@@ -121,15 +112,11 @@ class SubsidiaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subsidiary $subsidiary)
     {
         //
-        $subsidiary = Subsidiary::findOrFail($id);
-
-        if($subsidiary){
-            $subsidiary->delete();
-            $this->updateDataSessionSubsidiary();
-        }
+        $subsidiary->delete();
+        $this->updateDataSessionSubsidiary();
 
         return redirect()->route('subsidiary.index');
     }
