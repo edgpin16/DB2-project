@@ -11,7 +11,21 @@ class Employeer extends Model
 
     protected $primaryKey = 'CI';
 
-    protected $incrementing = false;
+    public $incrementing = false;
+
+    protected $fillable = [
+        'CI',
+        'subsidiary_id',
+        'name',
+        'surname',
+        'date_birth',
+        'salary',
+    ];
+
+    protected $hidden = [
+        'CI',
+        'subsidiary_id',
+    ];
 
     public function subsidiary(){
         return $this->belongsTo(Subsidiary::class);
