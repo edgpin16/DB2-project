@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSavedSubsidiary;
 use App\Models\Subsidiary;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 
@@ -56,6 +57,8 @@ class SubsidiaryController extends Controller
         
         Subsidiary::create([
             'pharmacy_id' => session('pharmacy')->id,
+            'name' => $validated['name'],
+            'slug' => Str::slug($validated['name']),
             'city' => $validated['city'],
             'province' => $validated['province']
         ]); 

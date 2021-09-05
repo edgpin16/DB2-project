@@ -12,7 +12,8 @@
                 <div class="row w-75">
                     <div class="card mr-5">
                         <div class="card-body">
-                            <h5 class="card-title">Sucursal n° {{$loop->iteration}} : </h5>
+                            <h5 class="card-title mb-3">Sucursal n° {{$loop->iteration}} : </h5>
+                            <p class="card-text" > Nombre: {{ $subsidiary->name }} </p>
                             <p class="card-text" > Ciudad: {{ $subsidiary['city'] }} </p>
                             <p class="card-text" > Provincia: {{ $subsidiary['province'] }} </p>
                             <a href=" {{ route('subsidiary.edit', $subsidiary) }} " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>

@@ -15,6 +15,33 @@
                     @csrf
                     @method('PATCH')
                     {{-- {{ ddd($subsidiary->city) }} --}}
+
+                    @error('slug')
+                        <div class="form-group form-control-lg mb-5">
+                            <div class="mb-5 d-block">
+                                <small style="color: red">
+                                    <p>{{ $message }}</p>
+                                </small>  
+                            </div> 
+                        </div>                      
+                     @enderror
+
+                    <div class="form-group form-control-lg mb-5">
+                        <label for="name" class="control-label" >Ingresa el nombre: </label>
+                        <input type="text" name="name" id="name" 
+                            class="form-control"
+                            placeholder="Ingresa aquí el nombre" 
+                            value="{{old('name', $subsidiary->name)}}"
+                        >
+                        @error('name')
+                            <div class="mb-5 d-block">
+                                <small style="color: red">
+                                    <p>{{ $message }}</p>
+                                </small>  
+                            </div>                       
+                        @enderror
+                    </div>
+
                     <div class="form-group form-control-lg mb-5">
                         <label for="city" class="control-label" >Ingresa la ciudad: </label>
                         <input type="text" name="city" id="city" 

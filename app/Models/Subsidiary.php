@@ -11,6 +11,8 @@ class Subsidiary extends Model
 
     protected $fillable = [
         'pharmacy_id',
+        'name',
+        'slug',
         'city',
         'province',
     ];
@@ -21,6 +23,11 @@ class Subsidiary extends Model
 
     public function pharmacy(){
         return $this->belongsTo(Pharmacy::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
 }

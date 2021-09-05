@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class StoreSavedSubsidiary extends FormRequest
 {
@@ -17,14 +19,30 @@ class StoreSavedSubsidiary extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->name), //Colocamos de una vez el slug, dependiendo del nombre
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
     public function rules()
     {
+        $id = $this->route('subsidiary')?->id; //Obtiene el id de la sucursal pasada por url, si no existe lo ignora, esto se usa cuando se actualiza una sucursal
+
         return [
             //Se describiran los campos y sus reglas
+            'name' => ['required', 'string', 'max:255', Rule::unique('subsidiaries', 'name')->ignore($id) ],
+            'slug' => [Rule::unique('subsidiaries', 'slug')->ignore($id)],
             'city' => 'required|string|max:255',
             'province' => 'required|string|max:255',
         ];
@@ -38,6 +56,9 @@ class StoreSavedSubsidiary extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => 'Se requiere un nombre',
+            'name.unique' => 'Nombre ya registrado en la bd, elige otro',
+            'slug.unique' => 'Posiblemente se este repitiendo la url que apunta al proyecto, elige otro nombre',
             'city.required' => 'Se requiere una ciudad',
             'province.required' => 'Se requiere una provincia o estado',
         ];

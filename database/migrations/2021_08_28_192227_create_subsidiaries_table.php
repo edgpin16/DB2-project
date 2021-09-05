@@ -15,6 +15,8 @@ class CreateSubsidiariesTable extends Migration
     {
         Schema::create('subsidiaries', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->unsignedBigInteger('pharmacy_id');
             $table->string('city');
             $table->string('province');
