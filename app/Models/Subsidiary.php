@@ -25,6 +25,10 @@ class Subsidiary extends Model
         return $this->belongsTo(Pharmacy::class);
     }
 
+    public function employeers (){
+        return $this->hasMany(Employeer::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
