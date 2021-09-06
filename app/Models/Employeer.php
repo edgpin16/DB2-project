@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Pharmaceutist;
+
 class Employeer extends Model
 {
     use HasFactory;
@@ -30,6 +32,10 @@ class Employeer extends Model
 
     public function subsidiary(){
         return $this->belongsTo(Subsidiary::class);
+    }
+
+    public function pharmaceutist(){
+        return $this->belongsTo(Pharmaceutist::class);
     }
 
 }
