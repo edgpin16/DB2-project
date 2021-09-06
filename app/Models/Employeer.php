@@ -20,6 +20,7 @@ class Employeer extends Model
         'surname',
         'date_birth',
         'salary',
+        'category',
     ];
 
     protected $hidden = [
