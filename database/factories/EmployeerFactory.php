@@ -31,7 +31,7 @@ class EmployeerFactory extends Factory
             'surname' => $this->faker->lastName(),
             'date_birth' => $this->faker->date('Y-m-d', 'now'),
             'salary' => $this->faker->randomFloat(),
-            'category' => $this->faker->randomElement(['administrative', 'auxiliaryPharmacy', 'Analyst', 'pharmaceutist', 'intern', 'minorInter']),
+            'category' => $this->faker->randomElement(['administrative', 'auxiliaryPharmacy', 'Analyst', 'intern', 'minorInter']),
         ];
     }
 }

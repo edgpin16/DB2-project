@@ -27,7 +27,7 @@ class Pharmaceutist extends Model
     }
 
     public function certificate(){
-        return $this->belongsTo(Certificate::class);
+        return $this->hasOne(Certificate::class);
     }
 
 }

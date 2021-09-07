@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Employeer;
 
-class EmployeerSeeder extends Seeder
+use App\Models\Certificate;
+
+class CertificateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +16,6 @@ class EmployeerSeeder extends Seeder
     public function run()
     {
         //
-        Employeer::factory(50)->create();
+        Certificate::factory(10)->create();
     }
 }

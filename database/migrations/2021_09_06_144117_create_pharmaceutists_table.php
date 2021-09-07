@@ -35,8 +35,7 @@ class CreatePharmaceutistsTable extends Migration
      */
     public function down()
     {
-
-        Schema::table('employeers', function (Blueprint $table) {
+        Schema::table('pharmaceutists', function (Blueprint $table) {
             $table->dropForeign(['employeer_CI']);
             $table->dropColumn('employeer_CI');
         });

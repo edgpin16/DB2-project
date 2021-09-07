@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pharmaceutist;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PharmacySeeder::class);
         $this->call(SubsidiarySeeder::class);
         $this->call(EmployeerSeeder::class);
+        $this->call(PharmaceutistSeeder::class);
+        // $this->call(CertificateSeeder::class);
     }
 }
