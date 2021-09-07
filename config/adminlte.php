@@ -263,39 +263,39 @@ return [
                             'text' => 'Empleado administrativo',
                             // 'icon' => 'fas fa-fw fa-user-plus',
                             'icon' => 'fas fa-fw fa-user-tie',
-                            'url' => '#',
-                            // 'route' => 'subsidiary.index',
+                            'url' => '/seleccionar-sucursal/administrativo',
+                            //'route' => 'selectSubsidiary',
                         ],
                         [
                             'text' => 'Empleado auxiliar de farmacia',
                             // 'icon' => 'fas fa-fw fa-user-plus',
                             'icon' => 'fas fa-fw fa-notes-medical',
-                            'url' => '#',
+                            'url' => 'seleccionar-sucursal/auxiliarFarmacia',
                             // 'route' => 'subsidiary.index',
                         ],
                         [
                             'text' => 'Empleado analista',
                             // 'icon' => 'fas fa-fw fa-user-plus',
                             'icon' => 'fas fa-fw fa-flask',
-                            'url' => '#',
+                            'url' => 'seleccionar-sucursal/analista',
                             // 'route' => 'subsidiary.index',
                         ],
                         [
                             'text' => 'Empleado farmaceutico',
                             'icon' => 'fas fa-fw fa-hospital-user',
-                            'url' => '#',
+                            'url' => 'seleccionar-sucursal/farmaceutico',
                             // 'route' => 'subsidiary.create'
                         ],
                         [
                             'text' => 'Empleado pasante',
                             'icon' => 'fas fa-fw fa-user-graduate',
-                            'url' => '#',
+                            'url' => 'seleccionar-sucursal/pasante',
                             // 'route' => 'subsidiary.create'
                         ],
                         [
                             'text' => 'Empleado pasante menor de edad',
                             'icon' => 'fas fa-fw fa-house-user',
-                            'url' => '#',
+                            'url' => 'seleccionar-sucursal/pasanteMenorDeEdad',
                             // 'route' => 'subsidiary.create'
                         ]
                     ]

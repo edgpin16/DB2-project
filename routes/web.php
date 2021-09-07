@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\http\Controllers\SubsidiaryController;
+use App\Http\Controllers\SelectSubsidiaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('sucursal', SubsidiaryController::class)->parameters(['sucursal' => 'subsidiary'])->names('subsidiary');
+
+Route::get('/seleccionar-sucursal/{nameCategory?}', [SelectSubsidiaryController::class, 'index'])->name('selectSubsidiary');
 
 // Auth::routes();
 
