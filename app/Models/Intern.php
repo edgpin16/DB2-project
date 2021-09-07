@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\MinorInter;
+
 class Intern extends Model
 {
     use HasFactory;
@@ -24,6 +26,10 @@ class Intern extends Model
 
     public function employeer(){
         return $this->hasOne(Employeer::class);
+    }
+
+    public function minorInter(){
+        return $this->belongsTo(MinorInter::class);
     }
 
 }
