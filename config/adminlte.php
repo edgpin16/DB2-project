@@ -239,18 +239,74 @@ return [
             'submenu' => [
                 [
                     'text' => 'Ver sucursales',
+                    'icon' => 'fas fa-fw fa-search',
                     'route' => 'subsidiary.index',
                 ],
                 [
                     'text' => 'Agregar una sucursal',
+                    'icon' => 'fas fa-fw fa-plus',
                     'route' => 'subsidiary.create'
                 ]
             ]
         ],
         [
             'text' => 'Empleados',
-            'icon' => 'fas fa-fw fa-user-tie',
-            'url' => '#',
+            'icon' => 'fas fa-fw fa-users',
+            // 'url' => '#',
+            'submenu' => [
+                [
+                    'text' => 'Ver empleados',
+                    'icon' => 'fas fa-fw fa-search',
+                    // 'route' => 'subsidiary.index',
+                    'submenu' => [
+                        [
+                            'text' => 'Empleado administrativo',
+                            // 'icon' => 'fas fa-fw fa-user-plus',
+                            'icon' => 'fas fa-fw fa-user-tie',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.index',
+                        ],
+                        [
+                            'text' => 'Empleado auxiliar de farmacia',
+                            // 'icon' => 'fas fa-fw fa-user-plus',
+                            'icon' => 'fas fa-fw fa-notes-medical',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.index',
+                        ],
+                        [
+                            'text' => 'Empleado analista',
+                            // 'icon' => 'fas fa-fw fa-user-plus',
+                            'icon' => 'fas fa-fw fa-flask',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.index',
+                        ],
+                        [
+                            'text' => 'Empleado farmaceutico',
+                            'icon' => 'fas fa-fw fa-hospital-user',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.create'
+                        ],
+                        [
+                            'text' => 'Empleado pasante',
+                            'icon' => 'fas fa-fw fa-user-graduate',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.create'
+                        ],
+                        [
+                            'text' => 'Empleado pasante menor de edad',
+                            'icon' => 'fas fa-fw fa-house-user',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.create'
+                        ]
+                    ]
+                ],
+                [
+                    'text' => 'Agregar una empleado',
+                    'icon' => 'fas fa-fw fa-plus',
+                    'url' => '#'
+                    // 'route' => 'subsidiary.create'
+                ]
+            ]
         ]
     ],
 
