@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pharmaceutist;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserSeeder::class);
-        $this->call(PharmacySeeder::class);
-        $this->call(SubsidiarySeeder::class);
-        $this->call(EmployeerSeeder::class);
-        $this->call(PharmaceutistSeeder::class);
+        $this->call(UserSeeder::class); //Usuarios
+        $this->call(PharmacySeeder::class); //Farmacias
+        $this->call(SubsidiarySeeder::class); //Sucursales
+        $this->call(EmployeerSeeder::class); //Empleado analista, auxiliar farmacia y administrativo
+        $this->call(PharmaceutistSeeder::class); //Empleado farmaceutico
+        $this->call(InternSeeder::class); //Empleado pasante
         // $this->call(CertificateSeeder::class);
     }
 }

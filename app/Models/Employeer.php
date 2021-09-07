@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Pharmaceutist;
+use App\Models\Intern;
 
 class Employeer extends Model
 {
@@ -36,6 +37,10 @@ class Employeer extends Model
 
     public function pharmaceutist(){
         return $this->belongsTo(Pharmaceutist::class);
+    }
+
+    public function intern(){
+        return $this->belongsTo(Intern::class);
     }
 
 }
