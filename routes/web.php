@@ -29,6 +29,8 @@ Route::resource('sucursal', SubsidiaryController::class)->parameters(['sucursal'
 
 Route::get('/seleccionar-sucursal/{nameCategory?}', [SelectSubsidiaryController::class, 'index'])->name('selectSubsidiary');
 
+Route::post('/validando-datos', [SelectSubsidiaryController::class, 'validateData'])->name('validateDataSubsidiaryCategory');
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
