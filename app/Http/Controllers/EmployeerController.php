@@ -95,9 +95,13 @@ class EmployeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employeer $employeer)
     {
         //
+        return view('employeer.edit', [
+            'employeer' => $employeer,
+            'subsidiaries' => session('subsidiares_pharmacy'),
+        ]);
     }
 
     /**
@@ -107,9 +111,12 @@ class EmployeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreSavedEmployeer $request, Employeer $employeer)
     {
         //
+        $employeer->update( array_filter($request->validated()) );
+
+        return redirect()->route('empleado.index', [$employeer->category, $employeer->subsidiary_id]);
     }
 
     /**
@@ -118,8 +125,14 @@ class EmployeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employeer $employeer)
     {
         //
+        $category = $employeer->category;
+        $SubsidiaryID = $employeer->subsidiary_id;
+
+        $employeer->delete();
+
+        return redirect()->route('empleado.index', [$category, $SubsidiaryID]);
     }
 }

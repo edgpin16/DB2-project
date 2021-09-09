@@ -19,10 +19,9 @@
                             <p class="card-text" > Fecha de nacimiento: {{ $employeer->date_birth }} </p>
                             <p class="card-text" > Salario: {{ $employeer->salary }} </p>
 
-                            <a href=" # " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>
-                            {{-- {{ route('subsidiary.edit', $subsidiary) }} --}}
-                            <form method="#" action=" # ">
-                                {{-- {{route('subsidiary.destroy', $subsidiary)}} --}}
+                            <a href=" {{ route('employeer.edit', $employeer) }} " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>
+
+                            <form method="post" action=" {{route('employeer.destroy', $employeer)}} ">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-primary mb-2 btn-block" >Eliminar</button>
@@ -31,7 +30,7 @@
                     </div>
                 </div>
             @empty
-                <p>No posees ningun empleado en esta sucursal :( Debes agregar uno!!</p>
+                <p>No posees ningun empleado en esta sucursal, por lo menos de esta categoría.... :( Debes agregar uno!!</p>
                 <a href=" {{route('home')}} " class="btn btn-primary mb-2 btn-lg" role="button" >Ir al home</a>
             @endforelse
         </div>

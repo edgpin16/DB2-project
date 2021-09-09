@@ -25,11 +25,13 @@ class StoreSavedEmployeer extends FormRequest
      */
     public function rules()
     {
+        $CI = $this->route('employeer')?->CI; //Obtiene el CI del empleado a editar
+
         return [
             //
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'CI' => ['required', 'numeric', 'unique:employeers,CI'],
+            'CI' => ['required', 'numeric', Rule::unique('employeers', 'CI')->ignore($CI, 'CI')],
             'date_birth' => ['required', 'date_format:Y-m-d'],
             'salary' => ['required', 'numeric'],
             'subsidiary' => ['required', 'numeric',
