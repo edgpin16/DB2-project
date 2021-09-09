@@ -292,19 +292,59 @@ return [
                             'url' => 'seleccionar-sucursal/pasante',
                             // 'route' => 'subsidiary.create'
                         ],
-                        [
-                            'text' => 'Empleado pasante menor de edad',
-                            'icon' => 'fas fa-fw fa-house-user',
-                            'url' => 'seleccionar-sucursal/pasanteMenorDeEdad',
-                            // 'route' => 'subsidiary.create'
-                        ]
+                        // [
+                        //     'text' => 'Empleado pasante menor de edad',
+                        //     'icon' => 'fas fa-fw fa-house-user',
+                        //     'url' => 'seleccionar-sucursal/pasanteMenorDeEdad',
+                        //     // 'route' => 'subsidiary.create'
+                        // ]
                     ]
                 ],
                 [
                     'text' => 'Agregar una empleado',
                     'icon' => 'fas fa-fw fa-plus',
-                    'url' => '#'
-                    // 'route' => 'subsidiary.create'
+                    // 'url' => '#'
+                    'submenu' => [
+                        [
+                            'text' => 'Empleado administrativo',
+                            // 'icon' => 'fas fa-fw fa-user-plus',
+                            'icon' => 'fas fa-fw fa-user-tie',
+                            'url' => '/empleado/crear/administrativo',
+                            // 'route' => 'employeer.create',
+                        ],
+                        [
+                            'text' => 'Empleado auxiliar de farmacia',
+                            // 'icon' => 'fas fa-fw fa-user-plus',
+                            'icon' => 'fas fa-fw fa-notes-medical',
+                            'url' => '/empleado/crear/auxiliarFarmacia',
+                            // 'route' => 'employeer.create',
+                        ],
+                        [
+                            'text' => 'Empleado analista',
+                            // 'icon' => 'fas fa-fw fa-user-plus',
+                            'icon' => 'fas fa-fw fa-flask',
+                            'url' => '/empleado/crear/analista',
+                            // 'route' => 'employeer.create',
+                        ],
+                        [
+                            'text' => 'Empleado farmaceutico',
+                            'icon' => 'fas fa-fw fa-hospital-user',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.create'
+                        ],
+                        [
+                            'text' => 'Empleado pasante',
+                            'icon' => 'fas fa-fw fa-user-graduate',
+                            'url' => '#',
+                            // 'route' => 'subsidiary.create'
+                        ],
+                        // [
+                        //     'text' => 'Empleado pasante menor de edad',
+                        //     'icon' => 'fas fa-fw fa-house-user',
+                        //     'url' => '#',
+                        //     // 'route' => 'subsidiary.create'
+                        // ]
+                    ],
                 ]
             ]
         ]

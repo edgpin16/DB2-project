@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\http\Controllers\SubsidiaryController;
 use App\Http\Controllers\SelectSubsidiaryController;
+use App\Http\Controllers\EmployeerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\SelectSubsidiaryController;
 
 Route::get('/', function () {
     return redirect()->route('login');
-});
+})->name('index');
 
 Auth::routes();
 
@@ -31,6 +32,8 @@ Route::get('/seleccionar-sucursal/{nameCategory?}', [SelectSubsidiaryController:
 
 Route::post('/validando-datos', [SelectSubsidiaryController::class, 'validateData'])->name('validateDataSubsidiaryCategory');
 
-// Auth::routes();
+Route::get('/empleado/{nameCategory?}/sucursal/{idSubsidiary?}', [EmployeerController::class, 'index'])->name('empleado.index');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/empleado/crear/{nameCategory?}', [EmployeerController::class, 'create'])->name('empleado.create');
+
+Route::resource('empleado', EmployeerController::class)->except('index', 'create')->parameters(['empleado' => 'employeer'])->names('employeer');

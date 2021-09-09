@@ -40,10 +40,18 @@ class SelectSubsidiaryController extends Controller
      */
     public function validateData(StoreSavedSubsidiarySelected $request)
     {
-        //
-        // ddd($request);
-        $validated = $request->validated();
-        ddd($validated);
-    }
+        $validated = $request->validated(); //Valido los datos
 
+        $subsidiaryID = $validated['subsidiary'];
+        $typeCategory = $validated['type_category'];
+
+        if($typeCategory === "administrative" || $typeCategory === "Analyst" || $typeCategory === "auxiliaryPharmacy")
+            return redirect()->route('empleado.index', [$typeCategory,$subsidiaryID,]);
+
+    }
 }
+
+
+
+        // ddd($subsidiaryID, $typeCategory);
+        //Ahora, lo que hay que hacer, es, luego que los datos fueron validados, dependiendo del tipo de categoria a escoger, redireccionarlos al controlador respectivo, para los usuarios administrativos, auxiliares y analistas al EmployeerController, a los usuarios farmaceuticos, al controlador respectivo, al usuario Pasante al controlador respectivo y tal vez al pasante menor de edad a su controlador respectivo
