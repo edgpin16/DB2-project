@@ -5,6 +5,8 @@ namespace Database\Factories;
 use App\Models\Certificate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use App\Models\Pharmaceutist;
+
 class CertificateFactory extends Factory
 {
     /**
@@ -24,6 +26,9 @@ class CertificateFactory extends Factory
         return [
             //
             'registry_number' => $this->faker->unique()->randomNumber(8),
+            'pharmaceutist_id' => function (){
+                return Pharmaceutist::factory()->create()->id; 
+            },
             'university' => $this->faker->company(),
             'date_registration' => $this->faker->date('Y-m-d', 'now'),
         ];

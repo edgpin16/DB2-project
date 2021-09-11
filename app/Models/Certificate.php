@@ -28,7 +28,7 @@ class Certificate extends Model
     ];
 
     public function pharmaceutist(){
-        return $this->belongsTo(Pharmaceutist::class);
+        return $this->hasOne(Pharmaceutist::class);
     }
 
 }
