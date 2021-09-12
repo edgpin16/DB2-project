@@ -33,13 +33,11 @@
 
                             <a href=" {{ route('employeerPharmaceutist.edit', $employeer) }} " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>
 
-                            {{-- <a href=" {{ route('employeer.edit', $employeer) }} " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>
-
-                            <form method="post" action=" {{route('employeer.destroy', $employeer)}} ">
+                            <form method="post" action=" {{route('employeerPharmaceutist.destroy', $employeer)}} ">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-primary mb-2 btn-block" >Eliminar</button>
-                            </form> --}}
+                            </form>
                         </div>
                     </div>
                 </div>

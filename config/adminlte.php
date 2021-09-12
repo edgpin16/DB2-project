@@ -329,8 +329,8 @@ return [
                         [
                             'text' => 'Empleado farmaceutico',
                             'icon' => 'fas fa-fw fa-hospital-user',
-                            'url' => '#',
-                            // 'route' => 'subsidiary.create'
+                            // 'url' => '#',
+                            'route' => 'employeerPharmaceutist.create'
                         ],
                         [
                             'text' => 'Empleado pasante',

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Exception;
 use App\Models\Employeer;
 use App\Models\Subsidiary;
+use App\Models\Pharmaceutist;
+use App\Models\Certificate;
 use App\http\Requests\StoreSavedEmployeerPharmaceutist;
 
 class EmployeerPharmaceutistController extends Controller
@@ -47,6 +48,9 @@ class EmployeerPharmaceutistController extends Controller
     public function create()
     {
         //
+        return view('employeerPharmaceutist.create', [
+            'subsidiaries' => session('subsidiares_pharmacy'),
+        ]);
     }
 
     /**
@@ -55,9 +59,36 @@ class EmployeerPharmaceutistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSavedEmployeerPharmaceutist $request)
     {
         //
+        $data = $request->validated();
+
+        $employeer = Employeer::create([
+            'CI' => $data['CI'],
+            'subsidiary_id' => $data['subsidiary'],
+            'name' => $data['name'],
+            'surname' => $data['surname'],
+            'date_birth' => $data['date_birth'],
+            'salary' => $data['salary'],
+            'category' => $data['type_category'],
+        ]);
+
+        $employeerPharmaceutist = Pharmaceutist::create([
+            'employeer_CI' => $data['CI'],
+            'sanitary_permise_number' => $data['sanitary_permise_number'],
+            'schooling_number' => $data['schooling_number'],
+        ]);
+
+        Certificate::create([
+            'pharmaceutist_id' => $employeerPharmaceutist->id,
+            'registry_number' => $data['registry_number'],
+            'university' => $data['university'],
+            'date_registration' => $data['date_registration'],
+        ]);
+
+        return redirect()->route('employeerPharmaceutist.index', [$employeer->subsidiary_id]);
+
     }
 
     /**
@@ -97,7 +128,7 @@ class EmployeerPharmaceutistController extends Controller
             'salary' => $data['salary'],
             'category' => $data['type_category'],
         ]);
-        
+
         $employeer->pharmaceutist()->update([
             'employeer_CI' => $data['CI'],
             'sanitary_permise_number' => $data['sanitary_permise_number'],
@@ -119,8 +150,13 @@ class EmployeerPharmaceutistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employeer $employeer)
     {
         //
+        $SubsidiaryID = $employeer->subsidiary_id;
+
+        $employeer->delete();
+
+        return redirect()->route('employeerPharmaceutist.index', [$SubsidiaryID]);
     }
 }
