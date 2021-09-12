@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\SubsidiaryController;
 use App\Http\Controllers\SelectSubsidiaryController;
 use App\Http\Controllers\EmployeerController;
+use App\Http\Controllers\EmployeerPharmaceutistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,7 @@ Route::get('/empleado/{nameCategory?}/sucursal/{idSubsidiary?}', [EmployeerContr
 Route::get('/empleado/crear/{nameCategory?}', [EmployeerController::class, 'create'])->name('empleado.create');
 
 Route::resource('empleado', EmployeerController::class)->except('index', 'create')->parameters(['empleado' => 'employeer'])->names('employeer');
+
+Route::get('/empleadoFarmaceutico/sucursal/{idSubsidiary?}', [EmployeerPharmaceutistController::class, 'index'])->name('employeerPharmaceutist.index');
+
+Route::resource('empleadoFarmaceutico', EmployeerPharmaceutistController::class)->except('index', 'show')->parameters(['empleadoFarmaceutico' => 'employeer'])->names('employeerPharmaceutist');

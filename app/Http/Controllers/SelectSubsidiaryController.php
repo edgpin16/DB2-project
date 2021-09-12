@@ -47,7 +47,8 @@ class SelectSubsidiaryController extends Controller
 
         if($typeCategory === "administrative" || $typeCategory === "Analyst" || $typeCategory === "auxiliaryPharmacy")
             return redirect()->route('empleado.index', [$typeCategory,$subsidiaryID,]);
-
+        else if($typeCategory === "pharmaceutist")    
+            return redirect()->route('employeerPharmaceutist.index', [$subsidiaryID]);
     }
 }
 

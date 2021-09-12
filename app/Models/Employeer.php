@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Pharmaceutist;
 use App\Models\Intern;
+use App\Models\Certificate;
 
 class Employeer extends Model
 {
@@ -36,11 +37,15 @@ class Employeer extends Model
     }
 
     public function pharmaceutist(){
-        return $this->belongsTo(Pharmaceutist::class);
+        return $this->hasOne(Pharmaceutist::class);
+    }
+
+    public function pharmaceutistCertificate(){
+        return $this->hasOneThrough(Certificate::class, Pharmaceutist::class);
     }
 
     public function intern(){
-        return $this->belongsTo(Intern::class);
+        return $this->hasOne(Intern::class);
     }
 
 }

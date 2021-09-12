@@ -23,11 +23,11 @@ class Pharmaceutist extends Model
     ];
 
     public function employeer(){
-        return $this->hasOne(Employeer::class);
+        return $this->belongsTo(Employeer::class, 'CI');
     }
 
     public function certificate(){
-        return $this->belongsTo(Certificate::class);
+        return $this->hasOne(Certificate::class);
     }
 
 }
