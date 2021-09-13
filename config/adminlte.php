@@ -335,8 +335,8 @@ return [
                         [
                             'text' => 'Empleado pasante',
                             'icon' => 'fas fa-fw fa-user-graduate',
-                            'url' => '#',
-                            // 'route' => 'subsidiary.create'
+                            // 'url' => '#',
+                            'route' => 'employeerIntern.create'
                         ],
                         // [
                         //     'text' => 'Empleado pasante menor de edad',

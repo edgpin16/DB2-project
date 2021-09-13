@@ -49,6 +49,10 @@ class SelectSubsidiaryController extends Controller
             return redirect()->route('empleado.index', [$typeCategory,$subsidiaryID,]);
         else if($typeCategory === "pharmaceutist")    
             return redirect()->route('employeerPharmaceutist.index', [$subsidiaryID]);
+        else if($typeCategory === "intern")
+            return redirect()->route('employeerIntern.index', [$subsidiaryID]);
+        else
+            return redirect()->route('home');
     }
 }
 

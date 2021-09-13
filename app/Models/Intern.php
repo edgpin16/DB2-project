@@ -25,7 +25,7 @@ class Intern extends Model
     ];
 
     public function employeer(){
-        return $this->hasOne(Employeer::class);
+        return $this->belongsTo(Employeer::class);
     }
 
     public function minorInter(){
