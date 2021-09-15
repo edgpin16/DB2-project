@@ -8,7 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-use App\Models\Pharmacy\Pharmacy;
+use App\Models\Pharmacy;
+use App\Models\Laboratory;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,10 @@ class User extends Authenticatable
 
     public function pharmacy(){
         return $this->hasOne(Pharmacy::class);
+    }
+
+    public function laboratory(){
+        return $this->hasOne(Laboratory::class);
     }
 
 }
