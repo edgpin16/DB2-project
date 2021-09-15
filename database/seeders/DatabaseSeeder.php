@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(InternSeeder::class); //Empleado pasante
         $this->call(TutorMinorInterSeeder::class); //Crea un tutor representante, que a su vez crea un pasante menor de edad, que a su vez crea un pasante general que a su vez crea un empleado
         // $this->call(CertificateSeeder::class);
+        $this->call(LaboratorySeeder::class); //Crea laboratorios, que a su vez crea a su usuario pertinente
     }
 }
