@@ -24,6 +24,7 @@ class HomeController extends Controller
         return view('home', [
             'pharmacy' => session('pharmacy'),
             'subsidiares' => session('subsidiares_pharmacy'),
+            'laboratory' => session('laboratory'),
         ]);
     }
 }

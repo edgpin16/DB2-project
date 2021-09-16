@@ -11,6 +11,7 @@ use Illuminate\Validation\Rule;
 
 use App\Models\User;
 use App\Models\Pharmacy;
+use App\Models\Laboratory;
 
 class RegisterController extends Controller
 {
@@ -74,10 +75,16 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        Pharmacy::create([
-            'name' => $data['name'],
-            'user_id' => $newUser->id,
-        ]); 
+        if($data['type_organization'] === "Farmacia")
+            Pharmacy::create([
+                'name' => $data['name'],
+                'user_id' => $newUser->id,
+            ]); 
+        else if ($data['type_organization'] === "Laboratorio" )
+            Laboratory::create([
+                'name' => $data['name'],
+                'user_id' => $newUser->id,
+            ]);
 
         return $newUser;
         // if($data['type_organization'] === "Farmacia") //Si solicito farmacia
