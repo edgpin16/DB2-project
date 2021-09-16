@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,6 +37,24 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(){
+
+        $credentials = $this->validate(request(), [
+            'email' => ['required', 'email', 'string'],
+            'password' => ['required', 'string'],
+        ]);
+
+        if(Auth::attempt($credentials)){
+            // ddd(Auth()->user()->email); Aqui se colocara, si el tipo de rol es tal, entonces asigna las variables de sesion correspondientes, para o una farmacia o un laboratorio
+            return redirect()->route('home');
+        }
+
+        return back()
+            ->withErrors(['email' => trans('auth.failed')])
+            ->withInput(request(['email']));
+        
     }
 
     protected function loggedOut() {
