@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Pharmacy;
 use App\Models\Laboratory;
+use App\Models\Subsidiary;
 
 class User extends Authenticatable
 {
@@ -46,6 +47,10 @@ class User extends Authenticatable
 
     public function pharmacy(){
         return $this->hasOne(Pharmacy::class);
+    }
+
+    public function pharmacySubsidiaries(){
+        return $this->hasOneThrough(Subsidiary::class, Pharmacy::class);
     }
 
     public function laboratory(){

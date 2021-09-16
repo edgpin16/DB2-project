@@ -48,6 +48,8 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)){
             // ddd(Auth()->user()->email); Aqui se colocara, si el tipo de rol es tal, entonces asigna las variables de sesion correspondientes, para o una farmacia o un laboratorio
+            session(['pharmacy' => Auth()->user()->pharmacy()->first()]);
+            session(['subsidiares_pharmacy' => Auth()->user()->pharmacySubsidiaries()->get()]);
             return redirect()->route('home');
         }
 
