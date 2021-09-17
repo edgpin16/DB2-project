@@ -347,7 +347,18 @@ return [
                     ],
                 ]
             ]
-        ]
+        ],
+        [
+            'text' => 'Laboratorio',
+            'icon' => 'fas fa-fw fa-microscope',
+            'submenu' => [
+                [
+                    'text' => 'Modificar datos',
+                    'icon' => 'fas fa-fw fa-database',
+                    'route' => 'laboratory.edit',
+                ],
+            ]
+        ],
     ],
 
         // Navbar items:
