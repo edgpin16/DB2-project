@@ -26,7 +26,9 @@ class LaboratoryFactory extends Factory
         return [
             //
             'user_id' => function (){
-                return User::factory()->create()->id; 
+                $user = User::factory()->create();
+                $user->assignRole('laboratory_admin');
+                return $user->id; 
             },
             'name' => $this->faker->unique()->company(),
             'country' => $this->faker->country(),
