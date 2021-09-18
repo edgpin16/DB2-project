@@ -11,6 +11,7 @@ use Illuminate\Validation\Rule;
 
 use App\Models\User;
 use App\Models\Pharmacy;
+use App\Models\Subsidiary;
 use App\Models\Laboratory;
 
 class RegisterController extends Controller
@@ -73,23 +74,31 @@ class RegisterController extends Controller
         $newUser = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+        ]); //Creo un nuevo usuario
 
-        if($data['type_organization'] === "Farmacia")
-            Pharmacy::create([
+        if($data['type_organization'] === "Farmacia"){
+
+            $pharmacy = Pharmacy::create([
                 'name' => $data['name'],
                 'user_id' => $newUser->id,
-            ]); 
-        else if ($data['type_organization'] === "Laboratorio" )
-            Laboratory::create([
+            ]); //Creo una nueva farmacia
+
+            $newUser->assignRole('pharmacy_admin'); //Le asigno el rol
+            
+            session(['pharmacy' => $pharmacy]);
+            session(['subsidiares_pharmacy' => Subsidiary::where('pharmacy_id', $pharmacy->id)->get()]);
+        }
+
+        else if ($data['type_organization'] === "Laboratorio" ){
+            $laboratory = Laboratory::create([
                 'name' => $data['name'],
                 'user_id' => $newUser->id,
             ]);
 
+            $newUser->assignRole('laboratory_admin');
+            session(['laboratory' => $laboratory]);
+        }
+
         return $newUser;
-        // if($data['type_organization'] === "Farmacia") //Si solicito farmacia
-        //     echo("Farmacia"); //Entonces, al final del user::Create, deberemos de colocar asigneRole
-        // else if($data['type_organization'] === "Laboratorio")
-        //     echo("Laboratorio"); //Igual aquí 
     }
 }
