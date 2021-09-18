@@ -229,13 +229,14 @@ return [
             'text' => 'Dashboard',
             'route' => 'home',
             'icon' => 'fas fa-fw fa-home',
-
+            'can' => 'home',
         ],
 
         ['header' => 'options'],
         [
             'text' => 'Sucursales',
             'icon' => 'fas fa-fw fa-hospital-alt',
+            'can' => 'subsidiary.index',
             'submenu' => [
                 [
                     'text' => 'Ver sucursales',
@@ -252,6 +253,7 @@ return [
         [
             'text' => 'Empleados',
             'icon' => 'fas fa-fw fa-users',
+            'can' => 'selectSubsidiary',
             // 'url' => '#',
             'submenu' => [
                 [
@@ -351,6 +353,7 @@ return [
         [
             'text' => 'Laboratorio',
             'icon' => 'fas fa-fw fa-microscope',
+            'can' => 'laboratory.edit',
             'submenu' => [
                 [
                     'text' => 'Modificar datos',
