@@ -17,6 +17,7 @@ class LaboratoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:laboratory.edit')->only('edit','update');
     }
 
     /**

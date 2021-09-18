@@ -18,6 +18,10 @@ class SubsidiaryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:subsidiary.index')->only('index');
+        $this->middleware('can:subsidiary.create')->only('create','store');
+        $this->middleware('can:subsidiary.edit')->only('edit','update');
+        $this->middleware('can:subsidiary.destroy')->only('destroy');
     }
 
     /**

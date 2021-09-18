@@ -21,6 +21,10 @@ class EmployeerInternController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:employeerIntern.index')->only('index');
+        $this->middleware('can:employeerIntern.create')->only('create','store');
+        $this->middleware('can:employeerIntern.edit')->only('edit','update');
+        $this->middleware('can:employeerIntern.destroy')->only('destroy');
     }  
 
     /**

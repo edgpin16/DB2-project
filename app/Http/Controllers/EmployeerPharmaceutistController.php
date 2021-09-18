@@ -20,6 +20,10 @@ class EmployeerPharmaceutistController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:employeerPharmaceutist.index')->only('index');
+        $this->middleware('can:employeerPharmaceutist.create')->only('create','store');
+        $this->middleware('can:employeerPharmaceutist.edit')->only('edit','update');
+        $this->middleware('can:employeerPharmaceutist.destroy')->only('destroy');
     }    
     
     /**

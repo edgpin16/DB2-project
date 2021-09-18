@@ -17,6 +17,8 @@ class SelectSubsidiaryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:selectSubsidiary');
+        $this->middleware('can:validateDataSubsidiaryCategory');
     }
 
     /**
@@ -55,8 +57,3 @@ class SelectSubsidiaryController extends Controller
             return redirect()->route('home');
     }
 }
-
-
-
-        // ddd($subsidiaryID, $typeCategory);
-        //Ahora, lo que hay que hacer, es, luego que los datos fueron validados, dependiendo del tipo de categoria a escoger, redireccionarlos al controlador respectivo, para los usuarios administrativos, auxiliares y analistas al EmployeerController, a los usuarios farmaceuticos, al controlador respectivo, al usuario Pasante al controlador respectivo y tal vez al pasante menor de edad a su controlador respectivo
