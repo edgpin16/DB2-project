@@ -47,10 +47,15 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
-            // ddd(Auth()->user()->email); Aqui se colocara, si el tipo de rol es tal, entonces asigna las variables de sesion correspondientes, para o una farmacia o un laboratorio
-            session(['pharmacy' => Auth()->user()->pharmacy()->first()]);
-            session(['subsidiares_pharmacy' => Auth()->user()->pharmacySubsidiaries()->get()]);
-            session(['laboratory' => Auth()->user()->laboratory()->first()]);
+            
+            if (Auth()->user()->hasRole('pharmacy_admin')){
+                session(['pharmacy' => Auth()->user()->pharmacy()->first()]);
+                session(['subsidiares_pharmacy' => Auth()->user()->pharmacySubsidiaries()->get()]);
+            }
+            else if(Auth()->user()->hasRole('laboratory_admin')){
+                session(['laboratory' => Auth()->user()->laboratory()->first()]);
+            }
+            
             return redirect()->route('home');
         }
 
@@ -61,6 +66,7 @@ class LoginController extends Controller
     }
 
     protected function loggedOut() {
+        request()->session()->flush(); //Cuando nos deslogueamos, esto se encarga de borrar la sesión
         return redirect()->route('login') ;
     }
 
