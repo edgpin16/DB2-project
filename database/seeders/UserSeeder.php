@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
+use App\Models\Pharmacy;
 
 class UserSeeder extends Seeder
 {
@@ -20,8 +21,12 @@ class UserSeeder extends Seeder
         User::create([
             'email' => 'edgardo.pinto16@gmail.com',
             'password' => bcrypt('futbol1414'),
-        ]); 
+        ])->assignRole('pharmacy_admin');
 
-        User::factory(5)->create();
+        User::create([
+            'email' => 'edgardo.pinto.activate@gmail.com',
+            'password' => bcrypt('futbol1414'),
+        ])->assignRole('laboratory_admin');
+
     }
 }

@@ -24,7 +24,11 @@ class PharmacyFactory extends Factory
     {
         return [
             //
-            'user_id' => $this->faker->unique()->numberBetween(1, User::count()),
+            'user_id' => function (){
+                $user = User::factory()->create();
+                $user->assignRole('pharmacy_admin');
+                return $user->id; 
+            },
             'name' => $this->faker->company(),
         ];
     }
