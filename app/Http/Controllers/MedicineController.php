@@ -9,6 +9,21 @@ use App\Http\Requests\StoreSavedMedicine;
 
 class MedicineController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:medicine.index')->only('index');
+        $this->middleware('can:medicine.create')->only('create','store');
+        $this->middleware('can:medicine.edit')->only('edit','update');
+        $this->middleware('can:medicine.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

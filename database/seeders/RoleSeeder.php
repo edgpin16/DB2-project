@@ -65,6 +65,13 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'laboratory.edit'])->assignRole($role2);
         Permission::create(['name' => 'laboratory.update'])->assignRole($role2);
 
+        //Permisos para manipular datos de los medicamentos
+        Permission::create(['name' => 'medicine.store'])->assignRole($role2);
+        Permission::create(['name' => 'medicine.create'])->assignRole($role2);
+        Permission::create(['name' => 'medicine.index'])->assignRole($role2);
+        Permission::create(['name' => 'medicine.update'])->assignRole($role2);
+        Permission::create(['name' => 'medicine.destroy'])->assignRole($role2);
+        Permission::create(['name' => 'medicine.edit'])->assignRole($role2);
 
     }
 }

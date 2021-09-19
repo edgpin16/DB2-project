@@ -365,7 +365,7 @@ return [
         [
             'text' => 'Medicamento',
             'icon' => 'fas fa-fw fa-pills',
-            //'can' => 'laboratory.edit',
+            'can' => 'medicine.index',
             'submenu' => [
                 [
                     'text' => 'Ver medicamentos',
