@@ -15,6 +15,7 @@ class CreateMedicinesTable extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->unsignedBigInteger('serial_number');
+            $table->unsignedBigInteger('laboratory_id');
             $table->string('name_medicine');
             $table->string('presentation');
             $table->string('main_component');
@@ -24,6 +25,9 @@ class CreateMedicinesTable extends Migration
 
         Schema::table('medicines', function (Blueprint $table) {
             $table->primary('serial_number');
+
+            $table->foreign('laboratory_id')->nullable()->references('id')->on('laboratories')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -35,6 +39,10 @@ class CreateMedicinesTable extends Migration
     public function down()
     {
         Schema::table('medicines', function (Blueprint $table) {
+
+            $table->dropForeign(['laboratory_id']);
+            $table->dropColumn('laboratory_id');
+
             $table->dropPrimary('serial_number');
             $table->dropColumn('serial_number');
         });

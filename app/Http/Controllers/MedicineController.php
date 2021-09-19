@@ -34,7 +34,7 @@ class MedicineController extends Controller
         //
         return view('medicine.index', [
             'laboratory' => session('laboratory'),
-            'medicines' => Medicine::all(),
+            'medicines' => session('laboratory')->medicines()->get(),
         ]);
     }
 
@@ -64,6 +64,7 @@ class MedicineController extends Controller
 
         Medicine::create([
             'serial_number' => $data['serial_number'],
+            'laboratory_id' => session('laboratory')->id,
             'name_medicine' => $data['name_medicine'],
             'presentation' => $data['presentation'],
             'main_component' => $data['main_component'],
@@ -109,6 +110,7 @@ class MedicineController extends Controller
     public function update(StoreSavedMedicine $request, Medicine $medicine)
     {
         //
+        // if($medicine->laboratory()->first()->id === session('laboratory')->id) Esto para validar que la medicina a actualizar pertenezca al laboratorio, comprobación opcional. 
         $medicine->update( array_filter($request->validated()) );
 
         return redirect()->route('medicine.index');

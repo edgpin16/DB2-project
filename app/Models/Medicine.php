@@ -15,6 +15,7 @@ class Medicine extends Model
 
     protected $fillable = [
         'serial_number',
+        'laboratory_id',
         'name_medicine',
         'presentation',
         'main_component',
@@ -23,7 +24,11 @@ class Medicine extends Model
 
     protected $hidden = [
         'serial_number',
+        'laboratory_id',
     ];
 
+    public function laboratory(){
+        return $this->belongsTo(Laboratory::class);
+    }
 
 }
