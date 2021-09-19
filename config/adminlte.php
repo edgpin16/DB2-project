@@ -362,6 +362,23 @@ return [
                 ],
             ]
         ],
+        [
+            'text' => 'Medicamento',
+            'icon' => 'fas fa-fw fa-pills',
+            //'can' => 'laboratory.edit',
+            'submenu' => [
+                [
+                    'text' => 'Ver medicamentos',
+                    'icon' => 'fas fa-fw fa-search',
+                    'route' => 'medicine.index',
+                ],
+                [
+                    'text' => 'Agregar un medicamento',
+                    'icon' => 'fas fa-fw fa-plus',
+                    'route' => 'medicine.create',
+                ],
+            ]
+        ],
     ],
 
         // Navbar items:

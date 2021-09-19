@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeerController;
 use App\Http\Controllers\EmployeerPharmaceutistController;
 use App\Http\Controllers\EmployeerInternController;
 use App\Http\Controllers\LaboratoryController;
+use App\Http\Controllers\MedicineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,5 @@ Route::resource('empleadoPasante', EmployeerInternController::class)->except('in
 Route::get('laboratorio/editarDatos', [LaboratoryController::class, 'edit'])->name('laboratory.edit');
 
 Route::patch('laboratorio/validandoDatos/{laboratory?}', [LaboratoryController::class, 'update'])->name('laboratory.update');
+
+Route::resource('medicina', MedicineController::class)->except('show')->parameters(['medicina' => 'medicine'])->names('medicine');
