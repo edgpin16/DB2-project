@@ -379,6 +379,23 @@ return [
                 ],
             ]
         ],
+        [
+            'text' => 'Pedidos',
+            'icon' => 'fas fa-fw fa-shopping-cart',
+            //'can' => 'medicine.index',
+            'submenu' => [
+                [
+                    'text' => 'Ver todos los pedidos',
+                    'icon' => 'fas fa-fw fa-search',
+                    'route' => 'order.index',
+                ],
+                [
+                    'text' => 'Agregar un pedido',
+                    'icon' => 'fas fa-fw fa-plus',
+                    'route' => 'order.create',
+                ],
+            ]
+        ],
     ],
 
         // Navbar items:
