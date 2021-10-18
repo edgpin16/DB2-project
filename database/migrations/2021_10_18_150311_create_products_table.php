@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('serial_number_medicine');
+            $table->unsignedBigInteger('serial_number_medicine')->nullable();
             $table->unsignedBigInteger('quantity');
             $table->timestamps();
         });
@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->foreign('order_id')->nullable()->references('id')->on('orders')
             ->onUpdate('cascade')->onDelete('cascade'); //->onDelete('cascade')
 
-            $table->foreign('serial_number_medicine')->nullable()->references('serial_number')->on('medicines')->onUpdate('cascade'); //->onDelete('cascade')
+            $table->foreign('serial_number_medicine')->nullable()->references('serial_number')->on('medicines')->onUpdate('cascade')->onDelete('set null'); //->onDelete('cascade')
         });
     }
 
