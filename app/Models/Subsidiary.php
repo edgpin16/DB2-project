@@ -29,6 +29,10 @@ class Subsidiary extends Model
         return $this->hasMany(Employeer::class);
     }
 
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
