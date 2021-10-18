@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,5 +25,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(CertificateSeeder::class);
         $this->call(LaboratorySeeder::class); //Crea laboratorios, que a su vez crea a su usuario pertinente
         $this->call(MedicineSeeder::class); //Creando las medicinas
+        $this->call(OrderSeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }
