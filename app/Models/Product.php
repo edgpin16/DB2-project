@@ -23,4 +23,8 @@ class Product extends Model
     public function order(){
         return $this->belongsTo(Order::class);
     }
+
+    public function medicine(){
+        return $this->hasOne(Medicine::class, 'serial_number', 'serial_number_medicine');
+    }
 }
