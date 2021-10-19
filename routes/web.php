@@ -10,6 +10,7 @@ use App\Http\Controllers\EmployeerPharmaceutistController;
 use App\Http\Controllers\EmployeerInternController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,11 @@ Route::get('laboratorio/editarDatos', [LaboratoryController::class, 'edit'])->na
 Route::patch('laboratorio/validandoDatos/{laboratory?}', [LaboratoryController::class, 'update'])->name('laboratory.update');
 
 Route::resource('medicina', MedicineController::class)->except('show')->parameters(['medicina' => 'medicine'])->names('medicine');
+
+Route::post('pedidos/validando-datos', [OrderController::class, 'validateData'])->name('order.validateData');
+
+Route::get('pedidos/mostrando-datos/{idSubsidiary?}', [OrderController::class, 'show'])->name('order.show');
+
+Route::resource('pedidos', OrderController::class)->except('show')->parameters(['pedidos' => 'order'])->names('order');
+
+Route::get('pedidos/mostrando-datos/productos/{idOrder?}', [OrderController::class, 'showProducts'])->name('order.showProducts');
