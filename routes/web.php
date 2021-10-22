@@ -64,3 +64,5 @@ Route::get('pedidos/mostrando-datos/{idSubsidiary?}', [OrderController::class, '
 Route::resource('pedidos', OrderController::class)->except('show')->parameters(['pedidos' => 'order'])->names('order');
 
 Route::get('pedidos/mostrando-datos/productos/{idOrder?}', [OrderController::class, 'showProducts'])->name('order.showProducts');
+
+Route::get('pedidos/obteniendo-datos', [OrderController::class, 'getDataOrder'])->name('order.getData');

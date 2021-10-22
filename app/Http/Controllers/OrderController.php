@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 use App\Models\Subsidiary;
+use App\Models\Laboratory;
 use App\Models\Order;
+use App\Models\Product;
+
 use Exception;
+use App\Http\Requests\StoreSavedOrder;
 
 class OrderController extends Controller
 {
@@ -90,6 +94,42 @@ class OrderController extends Controller
     public function create()
     {
         //
+        return view('orders.create', [
+            'subsidiaries' => session('subsidiares_pharmacy'),
+            'laboratories' => Laboratory::all()
+        ]);
+    }
+
+    public function getDataOrder(){
+
+        $data = request()->validate([
+            'subsidiary' => ['required', 'numeric',
+                Rule::exists('subsidiaries', 'id')->where(function($query){
+                    $query->where('pharmacy_id', session('pharmacy')->id);
+                }),
+            ],
+            'laboratory' => ['required', 'numeric', Rule::exists('laboratories', 'id')],
+            'payment_type' => ['required', 'string', Rule::in(['decontado', 'credito'])],
+        ]);
+
+        try{
+
+            $subsidiary = Subsidiary::findOrFail($data['subsidiary']);
+            $laboratory = Laboratory::findOrFail($data['laboratory']);
+
+
+            return view('orders.formCreateOrder', [
+                'subsidiary' => $subsidiary,
+                'laboratory' => $laboratory,
+                'payment_type' => $data['payment_type'],
+                'medicines' => $laboratory->medicines()->get(),
+                'analists' => $subsidiary->employeers()->where('category', 'analyst')->get(),
+            ]);
+        }
+        catch(Exception $e){
+            ddd($e);
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -98,9 +138,34 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSavedOrder $request)
     {
         //
+
+        $data = $request->validated(); //Valido los datos
+
+        $medicines = $data['medicines']; //Obtengo las medicinas
+        $quantitys = $data['quantitys']; //Obtengo sus cantidades
+
+        $order = Order::create([
+            'subsidiary_id' => $data['subsidiary'],
+            'laboratory_id' => $data['laboratory'],
+            'analist' => $data['analist'],
+            'payment_type' => $data['payment_type'],
+            'payment_date' => $data['payment_date'],
+            'status' => 0,
+        ]); //Creo la orden
+
+        for ($i = 0; $i < sizeof($medicines); $i++)
+            Product::create([
+                'order_id' => $order->id,
+                'serial_number_medicine' => $medicines[$i],
+                'quantity' => $quantitys[$i],
+            ]); //Creo los n productos, que dependerán de la cantidad de medicamentos escogidos
+        
+        return redirect()->route('order.show', $data['subsidiary']);
+        // ddd($data, $medicines, $quantitys, $order, sizeof($medicines), sizeof($quantitys));
+
     }
 
     /**
