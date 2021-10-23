@@ -69,6 +69,7 @@ class MedicineController extends Controller
             'presentation' => $data['presentation'],
             'main_component' => $data['main_component'],
             'therapeutic_action' => $data['therapeutic_action'],
+            'price' => $data['price'],
         ]);
 
         return redirect()->route('medicine.index');

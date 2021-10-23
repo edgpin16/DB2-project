@@ -78,6 +78,7 @@
                                                     <p class="card-text" > Presentación: {{ $medicine->presentation }} </p>
                                                     <p class="card-text" > Componente principal: {{ $medicine->main_component }} </p>
                                                     <p class="card-text" > Acción terapeútica: {{ $medicine->therapeutic_action }} </p>
+                                                    <p class="card-text" > Precio por unidad: {{ $medicine->price }} </p>
                                                     <input type="checkbox" class = "form-control"     
                                                         name="medicines[]" 
                                                         id = "medicine"

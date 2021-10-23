@@ -20,6 +20,7 @@ class Medicine extends Model
         'presentation',
         'main_component',
         'therapeutic_action',
+        'price',
     ];
 
     protected $hidden = [

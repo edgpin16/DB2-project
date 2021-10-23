@@ -18,6 +18,7 @@
                             <p class="card-text" > Presentación: {{ $medicine->presentation }} </p>
                             <p class="card-text" > Componente principal: {{ $medicine->main_component }} </p>
                             <p class="card-text" > Acción terapeútica: {{ $medicine->therapeutic_action }} </p>
+                            <p class="card-text" > Precio de venta: {{ $medicine->price }} </p>
                             <a href=" {{ route('medicine.edit', $medicine) }} " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>
                             <form method="POST" action=" {{route('medicine.destroy', $medicine)}} ">
                                 @csrf

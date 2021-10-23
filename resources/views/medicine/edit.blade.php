@@ -93,6 +93,22 @@
                             </div>                       
                         @enderror
                     </div>
+
+                    <div class="form-group form-control-lg mb-5">
+                        <label for="price" class="control-label" >Ingresa el precio: </label>
+                        <input type="number" step="0.00001" name="price" id="price" 
+                            class="form-control"
+                            value="{{ old('price', $medicine->price) }}" 
+                            placeholder="Ingresa aquí el precio" 
+                        >
+                        @error('price')
+                            <div class="mb-5 d-block">
+                                <small style="color: red">
+                                    <p>{{ $message }}</p>
+                                </small>  
+                            </div>                       
+                        @enderror
+                    </div>
     
                     <div class="form-group form-control-lg mb-3" >
                         <button 

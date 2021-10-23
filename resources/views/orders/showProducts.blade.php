@@ -32,6 +32,7 @@
                             <p class="card-text" > Presentación: {{ $product->medicine->presentation }} </p>
                             <p class="card-text" > Componente principal: {{ $product->medicine->main_component }} </p>
                             <p class="card-text" > Acción terapeútica: {{ $product->medicine->therapeutic_action }} </p>
+                            <p class="card-text"> Precio por unidad: {{$product->medicine->price}} </p>
                             <p class="card-text"> Cantidad: {{$product->quantity}} </p>
                     </div>
                 </div>

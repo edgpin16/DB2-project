@@ -36,6 +36,7 @@ class StoreSavedMedicine extends FormRequest
             'presentation' => ['required', 'string', 'max:255'],
             'main_component' => ['required', 'string', 'max:255'],
             'therapeutic_action' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:1'],
         ];
     }
 
@@ -47,6 +48,10 @@ class StoreSavedMedicine extends FormRequest
     public function messages()
     {
         return [
+
+            'price.required' => 'El precio de la medicina es requerido',
+            'price.numeric' => 'El precio de la medicina debe ser numerico',
+            'price.min' => 'El precio de la medicina debe ser positivo',
 
             'therapeutic_action.required' => 'Se requiere una acción terapeútica',
             'therapeutic_action.max' => 'La acción terapeútica excede los 255 caracteres, elige uno mas corto',

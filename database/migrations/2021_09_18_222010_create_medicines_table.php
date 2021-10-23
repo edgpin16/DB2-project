@@ -20,6 +20,7 @@ class CreateMedicinesTable extends Migration
             $table->string('presentation');
             $table->string('main_component');
             $table->string('therapeutic_action');
+            $table->double('price');
             $table->timestamps();
         });
 

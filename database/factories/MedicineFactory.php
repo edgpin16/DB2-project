@@ -30,6 +30,7 @@ class MedicineFactory extends Factory
             'presentation' => $this->faker->sentence(3, false),
             'main_component' => $this->faker->sentence(3, false),
             'therapeutic_action' => $this->faker->sentence(3, false),
+            'price' => $this->faker->randomFloat(),
         ];
     }
 }
