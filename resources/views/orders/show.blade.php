@@ -22,6 +22,15 @@
                         <p class="card-text" > Status: {{ $order->status == 0 ? 'En espera' : 'En stock' }} </p>
 
                         <a href=" {{ route('order.showProducts', $order) }} " class="btn btn-primary mb-2 btn-block" role="button" >Ver todos los productos</a>
+
+                        @if ( $order->status == 0 )
+                            <form action="{{route('order.confirmOrder', $order)}}" method="POST">
+                                @csrf
+                                <button class="btn btn-primary mb-2 btn-block" >Confirmar pedido</button>
+                            </form>
+                            {{-- <a href=" {{ route('order.confirmOrder', $order) }} " class="btn btn-primary mb-2 btn-block" role="button" >Confirmar pedido</a> --}}
+                        @endif
+
                         {{-- <a href=" {{ route('medicine.edit', $medicine) }} " class="btn btn-primary mb-2 btn-block" role="button" >Editar</a>
                         <form method="POST" action=" {{route('medicine.destroy', $medicine)}} ">
                             @csrf

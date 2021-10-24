@@ -9,9 +9,11 @@ use App\Models\Subsidiary;
 use App\Models\Laboratory;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\DebtsToPay;
 
 use Exception;
 use App\Http\Requests\StoreSavedOrder;
+use App\Models\SubsidiaryStock;
 
 class OrderController extends Controller
 {
@@ -165,6 +167,57 @@ class OrderController extends Controller
         
         return redirect()->route('order.show', $data['subsidiary']);
         // ddd($data, $medicines, $quantitys, $order, sizeof($medicines), sizeof($quantitys));
+
+    }
+
+    public function confirmOrder(Order $Order){
+
+        if($Order->status == 0){
+
+            $products = $Order->products()->with('medicine')->get(); //Obtengo todos los productos
+
+            $totalAmount = 0; //El monto a pagar, es 0 al principio, ya que no se ha iterado nada
+
+            if(!$products->isEmpty()) //Si los productos no estan vacíos
+                foreach ($products as $product) {
+                    $totalAmount += ($product->medicine->price * $product->quantity); 
+                    //Itero todos los productos, de cada producto, obtengo el precio de la medicina, y la multiplico por la cantidad a comprar
+                }
+
+            DebtsToPay::create([
+                'order_id' => $Order->id,
+                'subsidiary_id' => $Order->subsidiary_id,
+                'laboratory_id' => $Order->laboratory_id,
+                'amount_to_pay' => $totalAmount,
+            ]); //Creo una cuenta por pagar, enlazada con la sucursal, y el id del pedido
+
+            if(!$products->isEmpty()){
+                //Si los productos no estan vacíos
+                $laboratoryName = $products[0]->medicine->laboratory()->first()->name;
+                foreach ($products as $product) {
+                    
+                    SubsidiaryStock::create([
+                        'subsidiary_id' => $Order->subsidiary_id,
+                        'serial_number' => $product->medicine->serial_number,
+                        'name_laboratory' => $laboratoryName, //Ya que todos son del mismo laboratorio
+                        'name_medicine' => $product->medicine->name_medicine,
+                        'presentation' => $product->medicine->presentation,
+                        'main_component' => $product->medicine->main_component,
+                        'therapeutic_action' => $product->medicine->therapeutic_action,
+                        'price_by_unit' => $product->medicine->price + $product->medicine->price * 0.30,
+                        'quantity' => $product->quantity,
+                    ]);
+                    //Itero todos los productos, de cada producto, los guardo en el stock de la sucursal correspondiente.
+                }
+            } 
+
+            $Order->update([
+                'status' => 1, //Actualizo el estado del pedido a 1, o listo
+            ]);
+
+        }
+
+        return redirect()->route('order.show', $Order->subsidiary_id);
 
     }
 
