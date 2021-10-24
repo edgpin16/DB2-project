@@ -421,12 +421,7 @@ return [
                 [
                     'text' => 'Ver todos los medicamentos en stock',
                     'icon' => 'fas fa-fw fa-search',
-                    'route' => 'order.index',
-                ],
-                [
-                    'text' => 'Buscar una medicina en específico',
-                    'icon' => 'fas fa-fw fa-search-location',
-                    'route' => 'order.create',
+                    'route' => 'subsidiaryStock.index',
                 ],
             ]
         ],

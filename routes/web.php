@@ -12,6 +12,7 @@ use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DebtsToPayController;
+use App\Http\Controllers\SubsidiaryStockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +76,9 @@ Route::resource('cuentas-por-pagar', DebtsToPayController::class)->except(['show
 Route::post('cuentas-por-pagar/validar-datos', [DebtsToPayController::class, 'validateData'])->name('debtsToPay.validateData');
 
 Route::get('cuentas-por-pagar/sucursal/{IDSubsidiary?}', [DebtsToPayController::class, 'show'])->name('debtsToPay.show');
+
+Route::resource('stock-sucursal', SubsidiaryStockController::class)->except(['show', 'store', 'create', 'edit', 'update', 'destroy'])->parameters(['stock-sucursal' => 'subsidiaryStock'])->names('subsidiaryStock');
+
+Route::post('stock-sucursal/validar-datos', [SubsidiaryStockController::class, 'validateData'])->name('subsidiaryStock.validateData');
+
+Route::get('stock-sucursal/sucursal/{IDSubsidiary?}', [SubsidiaryStockController::class, 'show'])->name('subsidiaryStock.show');
