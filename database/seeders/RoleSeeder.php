@@ -73,5 +73,28 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'medicine.destroy'])->assignRole($role2);
         Permission::create(['name' => 'medicine.edit'])->assignRole($role2);
 
+        //Permisos para manipular datos de los pedidos
+        Permission::create(['name' => 'order.store'])->assignRole($role1);
+        Permission::create(['name' => 'order.create'])->assignRole($role1);
+        Permission::create(['name' => 'order.index'])->assignRole($role1);
+        Permission::create(['name' => 'order.update'])->assignRole($role1);
+        Permission::create(['name' => 'order.destroy'])->assignRole($role1);
+        Permission::create(['name' => 'order.edit'])->assignRole($role1);
+        Permission::create(['name' => 'order.validateData'])->assignRole($role1);
+        Permission::create(['name' => 'order.show'])->assignRole($role1);
+        Permission::create(['name' => 'order.showProducts'])->assignRole($role1);
+        Permission::create(['name' => 'order.getData'])->assignRole($role1);
+        Permission::create(['name' => 'order.confirmOrder'])->assignRole($role1);
+
+        //Permisos para manipular datos de las cuentas por pagar
+        Permission::create(['name' => 'debtsToPay.index'])->assignRole($role1);
+        Permission::create(['name' => 'debtsToPay.validateData'])->assignRole($role1);
+        Permission::create(['name' => 'debtsToPay.show'])->assignRole($role1);
+
+        //Permisos para manipular datos del stock de las sucursales
+        Permission::create(['name' => 'subsidiaryStock.index'])->assignRole($role1);
+        Permission::create(['name' => 'subsidiaryStock.validateData'])->assignRole($role1);
+        Permission::create(['name' => 'subsidiaryStock.show'])->assignRole($role1);
+
     }
 }
