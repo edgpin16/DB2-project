@@ -66,3 +66,5 @@ Route::resource('pedidos', OrderController::class)->except('show')->parameters([
 Route::get('pedidos/mostrando-datos/productos/{idOrder?}', [OrderController::class, 'showProducts'])->name('order.showProducts');
 
 Route::get('pedidos/obteniendo-datos', [OrderController::class, 'getDataOrder'])->name('order.getData');
+
+Route::post('pedidos/confirmar-pedido/{Order?}', [OrderController::class, 'confirmOrder'])->name('order.confirmOrder');
