@@ -396,6 +396,40 @@ return [
                 ],
             ]
         ],
+        [
+            'text' => 'Cuentas por pagar',
+            'icon' => 'fas fa-fw fa-money-check-alt',
+            //'can' => 'medicine.index',
+            'submenu' => [
+                [
+                    'text' => 'Ver todas las cuentas por pagar',
+                    'icon' => 'fas fa-fw fa-search',
+                    'route' => 'debtsToPay.index',
+                ],
+                // [
+                //     'text' => 'Buscar una en específico',
+                //     'icon' => 'fas fa-fw fa-search-location',
+                //     'route' => 'order.create',
+                // ],
+            ]
+        ],
+        [
+            'text' => 'Almacen de medicamentos',
+            'icon' => 'fas fa-fw fa-warehouse',
+            //'can' => 'medicine.index',
+            'submenu' => [
+                [
+                    'text' => 'Ver todos los medicamentos en stock',
+                    'icon' => 'fas fa-fw fa-search',
+                    'route' => 'order.index',
+                ],
+                [
+                    'text' => 'Buscar una medicina en específico',
+                    'icon' => 'fas fa-fw fa-search-location',
+                    'route' => 'order.create',
+                ],
+            ]
+        ],
     ],
 
         // Navbar items:

@@ -11,6 +11,7 @@ use App\Http\Controllers\EmployeerInternController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DebtsToPayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,9 @@ Route::get('pedidos/mostrando-datos/productos/{idOrder?}', [OrderController::cla
 Route::get('pedidos/obteniendo-datos', [OrderController::class, 'getDataOrder'])->name('order.getData');
 
 Route::post('pedidos/confirmar-pedido/{Order?}', [OrderController::class, 'confirmOrder'])->name('order.confirmOrder');
+
+Route::resource('cuentas-por-pagar', DebtsToPayController::class)->except(['show', 'store', 'create', 'edit', 'update', 'destroy'])->parameters(['cuentas-por-pagar' => 'debtsToPay'])->names('debtsToPay');
+
+Route::post('cuentas-por-pagar/validar-datos', [DebtsToPayController::class, 'validateData'])->name('debtsToPay.validateData');
+
+Route::get('cuentas-por-pagar/sucursal/{IDSubsidiary?}', [DebtsToPayController::class, 'show'])->name('debtsToPay.show');
