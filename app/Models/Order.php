@@ -34,4 +34,9 @@ class Order extends Model
     public function laboratory(){
         return $this->belongsTo(Laboratory::class);
     }
+
+    public function debtsToPay(){
+        return $this->hasOne(DebtsToPay::class);
+    }
+
 }

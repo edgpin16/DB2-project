@@ -33,6 +33,14 @@ class Subsidiary extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function debtsToPays(){
+        return $this->hasMany(DebtsToPay::class);
+    }
+
+    public function subsidiaryStocks(){
+        return $this->hasMany(SubsidiaryStock::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
