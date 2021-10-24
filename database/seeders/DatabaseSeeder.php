@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(CertificateSeeder::class);
         $this->call(LaboratorySeeder::class); //Crea laboratorios, que a su vez crea a su usuario pertinente
         $this->call(MedicineSeeder::class); //Creando las medicinas
-        $this->call(OrderSeeder::class);
-        $this->call(ProductSeeder::class);
+        $this->call(OrderSeeder::class); //Creando los pedidos
+        $this->call(ProductSeeder::class); //Creando los productos para los pedidos
+        $this->call(DebtsToPaySeeder::class); //Creando las cuentas por pagar
+        $this->call(SubsidiaryStockSeeder::class); //Creando las medicinas propias de la sucursal
     }
 }
