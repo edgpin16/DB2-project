@@ -18,16 +18,18 @@
                         <p class="card-text" > Analista que emitió el pedido: {{$order->analist}} </p>
                         <p class="card-text" > Tipo de pago: {{$order->payment_type}} </p>
                         <p class="card-text" > Fecha de pago: {{$order->payment_date}} </p>
-                        <p class="card-text" > Nombre del laboratorio: {{$order->laboratory->name}} </p>
+                        <p class="card-text" > Nombre del laboratorio: {{$order->laboratory?->name}} </p>
                         <p class="card-text" > Status: {{ $order->status == 0 ? 'En espera' : 'En stock' }} </p>
 
                         <a href=" {{ route('order.showProducts', $order) }} " class="btn btn-primary mb-2 btn-block" role="button" >Ver todos los productos</a>
 
                         @if ( $order->status == 0 )
-                            <form action="{{route('order.confirmOrder', $order)}}" method="POST">
-                                @csrf
-                                <button class="btn btn-primary mb-2 btn-block" >Confirmar pedido</button>
-                            </form>
+                            @if ($order->laboratory?->name)
+                                <form action="{{route('order.confirmOrder', $order)}}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-primary mb-2 btn-block" >Confirmar pedido</button>
+                                </form>
+                            @endif
                             {{-- <a href=" {{ route('order.confirmOrder', $order) }} " class="btn btn-primary mb-2 btn-block" role="button" >Confirmar pedido</a> --}}
                         @endif
 
