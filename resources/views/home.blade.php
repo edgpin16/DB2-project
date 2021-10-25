@@ -13,15 +13,81 @@
 @section('content')
 
     @if ($pharmacy)
-        <p> {{ Auth::user()->email }} </p>
-        <p> {{ $pharmacy->name }} </p>
-        @if (!$subsidiares->isEmpty())
-            <p>Tienes una o mas sucursales!!!</p>
-        @else
-            <p>No tienes una sucursal :( Debes agregar una!! </p>
-        @endif
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                      <h3>{{$totalSubsidiaries}}</h3>
+                      <p>Sucursales</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-fw fa-hospital-alt"></i>
+                    </div>
+                    {{-- <a href="#" class="small-box-footer">
+                      More info <i class="fas fa-arrow-circle-right"></i>
+                    </a> --}}
+                  </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                      <h3>{{$totalEmployeers}}</h3>
+                      <p>Empleados</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-fw fa-users"></i>
+                    </div>
+                    {{-- <a href="#" class="small-box-footer">
+                      More info <i class="fas fa-arrow-circle-right"></i>
+                    </a> --}}
+                  </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                      <h3>{{$totalOrders}}</h3>
+                      <p>Pedidos</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-fw fa-shopping-cart"></i>
+                    </div>
+                    {{-- <a href="#" class="small-box-footer">
+                      More info <i class="fas fa-arrow-circle-right"></i>
+                    </a> --}}
+                  </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                      <h3>{{$totalSubsidiaryStocks}}</h3>
+                      <p>Medicinas en stock</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-fw fa-warehouse"></i>
+                    </div>
+                    {{-- <a href="#" class="small-box-footer">
+                      More info <i class="fas fa-arrow-circle-right"></i>
+                    </a> --}}
+                  </div>
+            </div>
+        </div> {{--END div row--}}
     @elseif ($laboratory)
-        <p> Nombre Laboratorio: {{ $laboratory->name }}</p>
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                      <h3>{{$totalMedicines}}</h3>
+                      <p>Total de medicinas</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-fw fa-pills"></i>
+                    </div>
+                    {{-- <a href="#" class="small-box-footer">
+                      More info <i class="fas fa-arrow-circle-right"></i>
+                    </a> --}}
+                  </div>
+            </div>
+        </div> {{--END div row--}}
     @endif
 
 @stop
