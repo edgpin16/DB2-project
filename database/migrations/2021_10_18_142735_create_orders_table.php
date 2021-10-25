@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('subsidiary_id');
-            $table->unsignedBigInteger('laboratory_id');
+            $table->unsignedBigInteger('laboratory_id')->nullable();
             $table->string('analist');
             $table->string('payment_type');
             $table->string('payment_date');
@@ -26,10 +26,10 @@ class CreateOrdersTable extends Migration
 
         Schema::table('orders', function (Blueprint $table) {
             $table->foreign('subsidiary_id')->nullable()->references('id')->on('subsidiaries')
-            ->onUpdate('cascade'); //->onDelete('cascade')
+            ->onUpdate('cascade')->onDelete('cascade'); //->onDelete('cascade')
 
             $table->foreign('laboratory_id')->nullable()->references('id')->on('laboratories')
-            ->onUpdate('cascade'); //->onDelete('cascade')
+            ->onUpdate('cascade')->onDelete('set null'); //->onDelete('cascade')
         });
     }
 
