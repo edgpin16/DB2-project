@@ -17,10 +17,9 @@ class SubsidiaryStockController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('can:medicine.index')->only('index');
-        // $this->middleware('can:medicine.create')->only('create','store');
-        // $this->middleware('can:medicine.edit')->only('edit','update');
-        // $this->middleware('can:medicine.destroy')->only('destroy');
+        $this->middleware('can:subsidiaryStock.index')->only('index');
+        $this->middleware('can:subsidiaryStock.validateData')->only('validateData');
+        $this->middleware('can:subsidiaryStock.show')->only('show');
     }
 
     /**

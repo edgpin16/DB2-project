@@ -26,10 +26,14 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('can:medicine.index')->only('index');
-        // $this->middleware('can:medicine.create')->only('create','store');
-        // $this->middleware('can:medicine.edit')->only('edit','update');
-        // $this->middleware('can:medicine.destroy')->only('destroy');
+        $this->middleware('can:order.index')->only('index');
+        $this->middleware('can:order.validateData')->only('validateData');
+        $this->middleware('can:order.show')->only('show');
+        $this->middleware('can:order.showProducts')->only('showProducts');
+        $this->middleware('can:order.create')->only('create');
+        $this->middleware('can:order.getData')->only('getDataOrder');
+        $this->middleware('can:order.store')->only('store');
+        $this->middleware('can:order.confirmOrder')->only('confirmOrder');
     }
 
     /**

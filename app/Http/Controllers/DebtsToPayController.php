@@ -17,10 +17,9 @@ class DebtsToPayController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('can:medicine.index')->only('index');
-        // $this->middleware('can:medicine.create')->only('create','store');
-        // $this->middleware('can:medicine.edit')->only('edit','update');
-        // $this->middleware('can:medicine.destroy')->only('destroy');
+        $this->middleware('can:debtsToPay.index')->only('index');
+        $this->middleware('can:debtsToPay.validateData')->only('validateData');
+        $this->middleware('can:debtsToPay.show')->only('show');
     }
 
     /**

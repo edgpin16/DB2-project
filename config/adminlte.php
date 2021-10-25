@@ -382,7 +382,7 @@ return [
         [
             'text' => 'Pedidos',
             'icon' => 'fas fa-fw fa-shopping-cart',
-            //'can' => 'medicine.index',
+            'can' => 'order.index',
             'submenu' => [
                 [
                     'text' => 'Ver todos los pedidos',
@@ -399,24 +399,19 @@ return [
         [
             'text' => 'Cuentas por pagar',
             'icon' => 'fas fa-fw fa-money-check-alt',
-            //'can' => 'medicine.index',
+            'can' => 'debtsToPay.index',
             'submenu' => [
                 [
                     'text' => 'Ver todas las cuentas por pagar',
                     'icon' => 'fas fa-fw fa-search',
                     'route' => 'debtsToPay.index',
                 ],
-                // [
-                //     'text' => 'Buscar una en específico',
-                //     'icon' => 'fas fa-fw fa-search-location',
-                //     'route' => 'order.create',
-                // ],
             ]
         ],
         [
             'text' => 'Almacen de medicamentos',
             'icon' => 'fas fa-fw fa-warehouse',
-            //'can' => 'medicine.index',
+            'can' => 'subsidiaryStock.index',
             'submenu' => [
                 [
                     'text' => 'Ver todos los medicamentos en stock',
