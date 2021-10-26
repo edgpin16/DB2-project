@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\InstallerController;
 use App\http\Controllers\SubsidiaryController;
 use App\Http\Controllers\SelectSubsidiaryController;
 use App\Http\Controllers\EmployeerController;
@@ -25,9 +26,13 @@ use App\Http\Controllers\SubsidiaryStockController;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-})->name('index');
+Route::get('/', [InstallerController::class, 'index'])->name('index');
+
+Route::post('validar-datos-instalador', [InstallerController::class, 'validateDataInstaller'])->name('installer.validateData');
+
+// Route::get('realizar-migraciones', [InstallerController::class, 'realizeMigrations'])->name('installer.realizeMigrations');
+
+// Route::post('realizando-migraciones', [InstallerController::class, 'doMigrations'])->name('installer.doMigrations');
 
 Auth::routes();
 
