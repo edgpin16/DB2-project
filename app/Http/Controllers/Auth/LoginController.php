@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -37,6 +38,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        //Verifica si NO existe un archivo placebo de instalación
+        if( !( Storage::exists('public/installer.txt') ) ) 
+            return view('auth.login');
+        else
+            return redirect()->route('index');
     }
 
     public function login(){

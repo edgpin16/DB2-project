@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use PDO;
@@ -11,8 +12,18 @@ use PDO;
 class InstallerController extends Controller
 {
     //
+    public function __construct()
+    {
+        set_time_limit(1000); //Establezco un maximo de 1000 segundos para que se ejecute todo.
+        $this->middleware('guest'); //Si esta autenticado, es ilogico que se devuelva a instalar de nuevo.
+    }
+
     public function index(){
-        return view('installer.index');
+        
+        if(Storage::exists('public/installer.txt')) //Verifica si existe un archivo placebo de instalación
+            return view('installer.index');
+        else
+            return redirect()->route('login');
     }
 
     public function validateDataInstaller(){
@@ -133,7 +144,7 @@ class InstallerController extends Controller
                 Artisan::call('migrate --seed'); //Hago las migraciones con sus seeders
                 Artisan::call('config:cache'); //Borro el cache de config
                 Artisan::call('cache:clear'); //Borro el cache general
-                
+                Storage::delete('public/installer.txt'); //Elimino el archivo, ya que se ha instalado todo.
                 return redirect()->route('login');
             }
         } 
